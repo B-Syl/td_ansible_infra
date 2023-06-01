@@ -29,3 +29,14 @@
       cisco.ios.ios_config:
         lines: ip nat outside
         parents: int g1
+
+    - name: config PAT statique
+      cisco.ios.ios_config:
+        lines: ip nat inside source static tcp 192.168.{{ item.addr }}.2 {{ item.portlan }} int g1 {{ item.portwan }}
+      loop:
+        - addr: 3
+          portlan: 80
+          portwan: 80
+        - addr: 4
+          portlan: 22
+          portwan: 2222

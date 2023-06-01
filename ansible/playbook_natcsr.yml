@@ -1,0 +1,10 @@
+- name: Config NAT/PAT CSR1000
+  hosts: csr1000
+  gather_facts: false
+
+  tasks:
+    - name: config pat
+      cisco.ios.ios_config:
+        lines:
+        - ip nat outside
+        parents: int g1
